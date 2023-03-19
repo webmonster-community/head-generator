@@ -51,40 +51,58 @@ class HeadGenerator implements HeadGeneratorInterface {
     protected array $scriptUrls = [];
     protected array $metaTags = [];
 
-    public function setLanguage(string $language): void {
+    public function setLanguage(string $language): HeadGenerator
+    {
         $this->language = $language;
+        return $this;
     }
 
-    public function setViewport(string $viewport): void {
+    public function setViewport(string $viewport): HeadGenerator
+    {
         $this->viewport = $viewport;
+        return $this;
     }
 
-    public function setTitle(string $title): void {
+    public function setTitle(string $title): HeadGenerator
+    {
         $this->title = $title;
+        return $this;
     }
 
-    public function setDescription(string $description): void {
+    public function setDescription(string $description): HeadGenerator
+    {
         $this->description = $description;
+        return $this;
     }
 
-    public function setCanonicalUrl(string $canonicalUrl): void {
+    public function setCanonicalUrl(string $canonicalUrl): HeadGenerator
+    {
         $this->canonicalUrl = $canonicalUrl;
+        return $this;
     }
 
-    public function setRobots(string $robots): void {
+    public function setRobots(string $robots): HeadGenerator
+    {
         $this->robots = $robots;
+        return $this;
     }
 
-    public function addStyleSheetUrl(string $url): void {
+    public function addStyleSheetUrl(string $url): HeadGenerator
+    {
         $this->styleSheetUrls[] = $url;
+        return $this;
     }
 
-    public function addScriptUrl(string $url): void {
+    public function addScriptUrl(string $url): HeadGenerator
+    {
         $this->scriptUrls[] = $url;
+        return $this;
     }
 
-    public function addMeta(string $name, string $content): void {
+    public function addMeta(string $name, string $content): HeadGenerator
+    {
         $this->metaTags[] = ['name' => $name, 'content' => $content];
+        return $this;
     }
 
     /**
