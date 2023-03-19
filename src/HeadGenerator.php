@@ -1,30 +1,29 @@
 <?php
-
 namespace webmonsterSEO;
 
 interface HeadGeneratorInterface {
 
-    public function setLanguage(string $language): void;
-    public function setViewport(string $viewport): void;
-    public function setTitle(string $title): void;
-    public function setDescription(string $description): void;
-    public function setCanonicalUrl(string $canonicalUrl): void;
-    public function setRobots(string $robots): void;
-    public function addMeta(string $name, string $content): void;
+    public function setLanguage(string $language);
+    public function setViewport(string $viewport);
+    public function setTitle(string $title);
+    public function setDescription(string $description);
+    public function setCanonicalUrl(string $canonicalUrl);
+    public function setRobots(string $robots);
+    public function addMeta(string $name, string $content);
     public function render(): string;
 }
 
 class HeadGenerator implements HeadGeneratorInterface {
 
-    protected string $language = 'en';
-    protected string $viewport = 'width=device-width, initial-scale=1';
-    protected string $title = '';
-    protected string $description = '';
-    protected string $canonicalUrl = '';
-    protected string $robots = 'index, follow';
-    protected array $styleSheetUrls = [];
-    protected array $scriptUrls = [];
-    protected array $metaTags = [];
+    protected string    $language = 'en';
+    protected string    $viewport = 'width=device-width, initial-scale=1';
+    protected string    $title = '';
+    protected string    $description = '';
+    protected string    $canonicalUrl = '';
+    protected string    $robots = 'index, follow';
+    protected array     $styleSheetUrls = [];
+    protected array     $scriptUrls = [];
+    protected array     $metaTags = [];
 
     public function setLanguage(string $language): HeadGenerator
     {
