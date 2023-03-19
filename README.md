@@ -3,10 +3,9 @@
 # Head Generator (PHP 8)
 Fully SEO optimized &lt;head> tag generator
 
-[![Build Status](https://github.com/stripe/stripe-php/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/webmonster-community/head-generator/actions?query=branch%3Amaster)
-[![Latest Stable Version](https://poser.pugx.org/stripe/stripe-php/v/stable.svg)](https://packagist.org/packages/webmonster-community/head-generator)
-[![Total Downloads](https://poser.pugx.org/stripe/stripe-php/downloads.svg)](https://packagist.org/packages/webmonster-community/head-generator)
-[![License](https://poser.pugx.org/stripe/stripe-php/license.svg)](https://packagist.org/packages/webmonster-community/head-generator)
+[![Latest Stable Version](http://poser.pugx.org/webmonster-community/head-generator/v)](https://packagist.org/packages/webmonster-community/head-generator)
+[![Total Downloads](http://poser.pugx.org/webmonster-community/head-generator/downloads)](https://packagist.org/packages/webmonster-community/head-generator)
+[![License](http://poser.pugx.org/webmonster-community/head-generator/license)](https://packagist.org/packages/webmonster-community/head-generator)
 
 ## Requirements
 
