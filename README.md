@@ -16,7 +16,7 @@ composer require webmonster-community/head-generator
 ```
 
 
-Visiter la communauté [Webmonster](https://webmonster.tech).
+Visit the Webmonster community [Webmonster](https://webmonster.tech).
 
-# Remerciements
+# Acknowledgements
 Thanks to : WebplusM, SignedA, Audrey.B
