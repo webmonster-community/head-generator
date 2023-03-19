@@ -1,11 +1,7 @@
 <?php
+    require_once 'vendor/autoload.php';
 
-use webmonsterSEO\HeadGenerator;
-
-ini_set('display_errors', 1);
-    require_once 'src/HeadGenerator.php';
-
-    $head = new HeadGenerator();
+    $head = new webmonsterSEO\HeadGenerator();
     $head->setLanguage('fr');
     $head->setViewport('width=device-width, initial-scale=1');
     $head->setTitle("Titre de la page - Mots clés importants | Nom de la marque");
