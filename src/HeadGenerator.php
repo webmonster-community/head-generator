@@ -212,22 +212,22 @@ class HeadGenerator implements HeadGeneratorInterface {
         $html .= '<html lang="' . $this->language . '">' . "\n";
         $html .= '<head>' . "\n";
         $html .= '    <meta charset="UTF-8">' . "\n";
-        $html .= $this->addContent('<meta name="viewport" content="%s">', $this->viewport);
-        $html .= $this->addContent('<meta name="language" content="%s">', $this->language);
-        $html .= $this->addContent('<title>%s</title>', $this->title);
-        $html .= $this->addContent('<meta name="description" content="%s">', $this->description);
-        $html .= $this->addContent('<meta name="keywords" content="%s">', $this->keywords);
-        $html .= $this->addContent('<meta name="author" content="%s">', $this->author);
-        $html .= $this->addContent('<meta name="robots" content="%s">', $this->robots);
-        $html .= $this->addContent('<meta name="creation_date" content="%s">', $this->creationDate);
-        $html .= $this->addContent('<meta name="last_modified" content="%s">', $this->lastModified);
-        $html .= $this->addContent('<meta name="geo.position" content="%s">', $this->geoPosition);
-        $html .= $this->addContent('<meta name="ICBM" content="%s">', $this->geoPosition);
+        $html .= $this->addContent('    <meta name="viewport" content="%s">', $this->viewport);
+        $html .= $this->addContent('    <meta name="language" content="%s">', $this->language);
+        $html .= $this->addContent('    <title>%s</title>', $this->title);
+        $html .= $this->addContent('    <meta name="description" content="%s">', $this->description);
+        $html .= $this->addContent('    <meta name="keywords" content="%s">', $this->keywords);
+        $html .= $this->addContent('    <meta name="author" content="%s">', $this->author);
+        $html .= $this->addContent('    <meta name="robots" content="%s">', $this->robots);
+        $html .= $this->addContent('    <meta name="creation_date" content="%s">', $this->creationDate);
+        $html .= $this->addContent('    <meta name="last_modified" content="%s">', $this->lastModified);
+        $html .= $this->addContent('    <meta name="geo.position" content="%s">', $this->geoPosition);
+        $html .= $this->addContent('    <meta name="ICBM" content="%s">', $this->geoPosition);
         $location = explode(",", $this->geoPosition);
-        $html .= $this->addContent('<meta name="place:location:latitude" content="%s">', trim($this->location[0]));
-        $html .= $this->addContent('<meta name="place:location:longitude" content="%s">', trim($this->location[1]));
+        $html .= $this->addContent('    <meta name="place:location:latitude" content="%s">', trim($location[0]));
+        $html .= $this->addContent('    <meta name="place:location:longitude" content="%s">', trim($location[1]));
 
-        $html .= $this->addContent('<link rel="canonical" href="%s">', $this->canonicalUrl);
+        $html .= $this->addContent('    <link rel="canonical" href="%s">', $this->canonicalUrl);
 
         // Add additional meta tags
         foreach ($this->metaTags as $meta) {
