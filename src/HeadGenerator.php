@@ -200,16 +200,16 @@ class HeadGenerator implements HeadGeneratorInterface {
         $html .= '<html lang="' . $this->language . '">' . "\n";
         $html .= '<head>' . "\n";
         $html .= '    <meta charset="UTF-8">' . "\n";
-        $html .= $this->addContent('<meta name="viewport" content="%s">' . "\n", $this->viewport);
-        $html .= $this->addContent('<meta name="language" content="%s">' . "\n", $this->language);
+        $html .= $this->addContent('<meta name="viewport" content="%s">', $this->viewport);
+        $html .= $this->addContent('<meta name="language" content="%s">', $this->language);
         $html .= $this->addContent('<title>%s</title>' . "\n", $this->title);
-        $html .= $this->addContent('<meta name="description" content="%s">' . "\n", $this->description);
-        $html .= $this->addContent('<meta name="keywords" content="%s">' . "\n", $this->keywords);
-        $html .= $this->addContent('<meta name="author" content="%s">' . "\n", $this->author);
-        $html .= $this->addContent('<meta name="robots" content="%s">' . "\n", $this->robots);
-        $html .= $this->addContent('<meta name="creation_date" content="%s">' . "\n", $this->creationDate);
-        $html .= $this->addContent('<meta name="last_modified" content="%s">' . "\n", $this->lastModified);
-        $html .= $this->addContent('<link rel="canonical" href="%s">' . "\n", $this->canonicalUrl);
+        $html .= $this->addContent('<meta name="description" content="%s">', $this->description);
+        $html .= $this->addContent('<meta name="keywords" content="%s">', $this->keywords);
+        $html .= $this->addContent('<meta name="author" content="%s">', $this->author);
+        $html .= $this->addContent('<meta name="robots" content="%s">', $this->robots);
+        $html .= $this->addContent('<meta name="creation_date" content="%s">', $this->creationDate);
+        $html .= $this->addContent('<meta name="last_modified" content="%s">', $this->lastModified);
+        $html .= $this->addContent('<link rel="canonical" href="%s">', $this->canonicalUrl);
 
         // Add additional meta tags
         foreach ($this->metaTags as $meta) {
