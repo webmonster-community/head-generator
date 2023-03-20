@@ -1,7 +1,7 @@
 ![img](https://techmonster.info/assets/img/logo-webmonster-community.png)
 
 # Head Generator (PHP)
-Fully SEO optimized &lt;head> tag generator
+PHP class that generates an optimized &lt;head> tag for search engine optimization (SEO)
 
 [![Latest Stable Version](http://poser.pugx.org/webmonster-community/head-generator/v)](https://packagist.org/packages/webmonster-community/head-generator)
 [![Total Downloads](http://poser.pugx.org/webmonster-community/head-generator/downloads)](https://packagist.org/packages/webmonster-community/head-generator)
