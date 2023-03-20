@@ -44,4 +44,4 @@ composer require webmonster-community/head-generator
 Visit the Webmonster community [Webmonster](https://webmonster.tech).
 
 # Acknowledgements
-Thanks to : WebplusM, SignedA, Audrey.B
+Thanks to : WebplusM, SignedA, Audrey.B, yowaiOtoko
