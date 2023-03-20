@@ -202,7 +202,7 @@ class HeadGenerator implements HeadGeneratorInterface {
         $html .= '    <meta charset="UTF-8">' . "\n";
         $html .= $this->addContent('<meta name="viewport" content="%s">', $this->viewport);
         $html .= $this->addContent('<meta name="language" content="%s">', $this->language);
-        $html .= $this->addContent('<title>%s</title>' . "\n", $this->title);
+        $html .= $this->addContent('<title>%s</title>', $this->title);
         $html .= $this->addContent('<meta name="description" content="%s">', $this->description);
         $html .= $this->addContent('<meta name="keywords" content="%s">', $this->keywords);
         $html .= $this->addContent('<meta name="author" content="%s">', $this->author);
