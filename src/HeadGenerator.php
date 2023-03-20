@@ -11,6 +11,7 @@ interface HeadGeneratorInterface {
     public function setAuthor(string $author);
     public function setCreationDate(string $creationDate);
     public function setLastModified(string $lastModified);
+    public function setGeoPosition(string $geoPosition);
     public function setCanonicalUrl(string $canonicalUrl);
     public function setRobots(string $robots);
     public function addMeta(string $name, string $content);
@@ -27,6 +28,7 @@ class HeadGenerator implements HeadGeneratorInterface {
     protected string    $author = '';
     protected string    $creationDate = '';
     protected string    $lastModified = '';
+    protected string    $geoPosition = '';
     protected string    $canonicalUrl = '';
     protected string    $robots = 'index, follow';
     protected array     $styleSheetUrls = [];
@@ -136,6 +138,16 @@ class HeadGenerator implements HeadGeneratorInterface {
     }
 
     /**
+     * @param string $geoPosition
+     * @return $this
+     */
+    public function setGeoPosition(string $geoPosition): HeadGenerator
+    {
+        $this->geoPosition = $geoPosition;
+        return $this;
+    }
+
+    /**
      * @param string $canonicalUrl
      * @return $this
      */
@@ -209,6 +221,12 @@ class HeadGenerator implements HeadGeneratorInterface {
         $html .= $this->addContent('<meta name="robots" content="%s">', $this->robots);
         $html .= $this->addContent('<meta name="creation_date" content="%s">', $this->creationDate);
         $html .= $this->addContent('<meta name="last_modified" content="%s">', $this->lastModified);
+        $html .= $this->addContent('<meta name="geo.position" content="%s">', $this->geoPosition);
+        $html .= $this->addContent('<meta name="ICBM" content="%s">', $this->geoPosition);
+        $location = explode(",", $this->geoPosition);
+        $html .= $this->addContent('<meta name="place:location:latitude" content="%s">', trim($this->location[0]));
+        $html .= $this->addContent('<meta name="place:location:longitude" content="%s">', trim($this->location[1]));
+
         $html .= $this->addContent('<link rel="canonical" href="%s">', $this->canonicalUrl);
 
         // Add additional meta tags
