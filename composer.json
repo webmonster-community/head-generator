@@ -9,6 +9,7 @@
   "homepage": "https://webmonster.tech/",
   "type": "library",
   "license": "MIT",
+  "version": "0.0.3",
   "authors": [
     {
       "name": "webmonster",
