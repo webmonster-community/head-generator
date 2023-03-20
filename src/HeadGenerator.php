@@ -9,11 +9,20 @@ interface HeadGeneratorInterface {
     public function setDescription(string $description);
     public function setKeywords(string $keywords);
     public function setAuthor(string $author);
+    public function setRobots(string $robots);
     public function setCreationDate(string $creationDate);
     public function setLastModified(string $lastModified);
     public function setGeoPosition(string $geoPosition);
+    public function setGeoCity(string $geoCity);
+    public function setGeoCountry(string $geoCountry);
     public function setCanonicalUrl(string $canonicalUrl);
-    public function setRobots(string $robots);
+    public function setSitemapUrl(string $sitemapUrl);
+    public function setFaviconUrl(string $faviconUrl);
+    public function setThemeColor(string $themeColor);
+    public function setSiteName(string $siteName);
+    public function setFbImageUrl(string $fbImageUrl);
+    public function setTwitterImageUrl(string $twitterImageUrl);
+    public function setWhatsappImageUrl(string $whatsappImageUrl);
     public function addMeta(string $name, string $content);
     public function render(): string;
 }
@@ -26,11 +35,20 @@ class HeadGenerator implements HeadGeneratorInterface {
     protected string    $description = '';
     protected string    $keywords = '';
     protected string    $author = '';
+    protected string    $robots = 'index, follow';
     protected string    $creationDate = '';
     protected string    $lastModified = '';
     protected string    $geoPosition = '';
+    protected string    $geoCity = '';
+    protected string    $geoCountry = '';
     protected string    $canonicalUrl = '';
-    protected string    $robots = 'index, follow';
+    protected string    $sitemapUrl = '/sitemap.xml';
+    protected string    $faviconUrl = '/favicon.png';
+    protected string    $themeColor = '#ffffff';
+    protected string    $siteName = '';
+    protected string    $fbImageUrl = '';
+    protected string    $twitterImageUrl = '';
+    protected string    $whatsappImageUrl = '';
     protected array     $styleSheetUrls = [];
     protected array     $scriptUrls = [];
     protected array     $metaTags = [];
@@ -148,16 +166,102 @@ class HeadGenerator implements HeadGeneratorInterface {
     }
 
     /**
+     * @param string $geoCity
+     * @return $this
+     */
+    public function setGeoCity(string $geoCity): HeadGenerator
+    {
+        $this->geoCity = $geoCity;
+        return $this;
+    }
+
+    /**
+     * @param string $geoCountry
+     * @return $this
+     */
+    public function setGeoCountry(string $geoCountry): HeadGenerator
+    {
+        $this->geoCountry = $geoCountry;
+        return $this;
+    }
+
+    /**
      * @param string $canonicalUrl
      * @return $this
      */
     public function setCanonicalUrl(string $canonicalUrl): HeadGenerator
     {
-        if(empty($canonicalUrl)){
-            $this->canonicalUrl = $this->getCanonicalLink();
-        }else{
-            $this->canonicalUrl = $canonicalUrl;
-        }
+        $this->canonicalUrl = $canonicalUrl;
+        return $this;
+    }
+
+    /**
+     * @param string $sitemapUrl
+     * @return $this
+     */
+    public function setSitemapUrl(string $sitemapUrl): HeadGenerator
+    {
+        $this->sitemapUrl = $sitemapUrl;
+        return $this;
+    }
+
+    /**
+     * @param string $faviconUrl
+     * @return $this
+     */
+    public function setFaviconUrl(string $faviconUrl): HeadGenerator
+    {
+        $this->faviconUrl = $faviconUrl;
+        return $this;
+    }
+
+    /**
+     * @param string $themeColor
+     * @return $this
+     */
+    public function setThemeColor(string $themeColor): HeadGenerator
+    {
+        $this->themeColor = $themeColor;
+        return $this;
+    }
+
+    /**
+     * @param string $siteName
+     * @return $this
+     */
+    public function setSiteName(string $siteName): HeadGenerator
+    {
+        $this->siteName = $siteName;
+        return $this;
+    }
+
+    /**
+     * @param string $fbImageUrl
+     * @return $this
+     */
+    public function setFbImageUrl(string $fbImageUrl): HeadGenerator
+    {
+        $this->fbImageUrl = $fbImageUrl;
+        return $this;
+    }
+
+    /**
+     * @param string $twitterImageUrl
+     * @return $this
+     */
+    public function setTwitterImageUrl(string $twitterImageUrl): HeadGenerator
+    {
+        $this->twitterImageUrl = $twitterImageUrl;
+        return $this;
+    }
+
+    /**
+     * @param string $whatsappImageUrl
+     * @return $this
+     */
+    public function setWhatsappImageUrl(string $whatsappImageUrl): HeadGenerator
+    {
+        $this->whatsappImageUrl = $whatsappImageUrl;
         return $this;
     }
 
@@ -203,6 +307,23 @@ class HeadGenerator implements HeadGeneratorInterface {
     }
 
     /**
+     * @param string $url
+     * @return string|null
+     */
+    public function get_external_domain_url(string $url): ?string {
+        $url_parts = parse_url($url);
+        if ($url_parts === false || !isset($url_parts['scheme'], $url_parts['host'])) {
+            return null;
+        }
+        $external_domain_url = $url_parts['scheme'] . '://' . $url_parts['host'];
+        $current_domain_url = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . '://' . $_SERVER['HTTP_HOST'];
+        if ($external_domain_url !== $current_domain_url) {
+            return $external_domain_url;
+        }
+        return null;
+    }
+
+    /**
      * @return string
      */
     public function render(): string
@@ -219,6 +340,7 @@ class HeadGenerator implements HeadGeneratorInterface {
         $html .= $this->addContent('    <meta name="keywords" content="%s">', $this->keywords);
         $html .= $this->addContent('    <meta name="author" content="%s">', $this->author);
         $html .= $this->addContent('    <meta name="robots" content="%s">', $this->robots);
+        $html .= '    <meta name="robots" content="max-snippet:150, max-image-preview:large">'."\n";
         $html .= $this->addContent('    <meta name="creation_date" content="%s">', $this->creationDate);
         $html .= $this->addContent('    <meta name="last_modified" content="%s">', $this->lastModified);
         $html .= $this->addContent('    <meta name="geo.position" content="%s">', $this->geoPosition);
@@ -226,8 +348,43 @@ class HeadGenerator implements HeadGeneratorInterface {
         $location = explode(",", $this->geoPosition);
         $html .= $this->addContent('    <meta name="place:location:latitude" content="%s">', trim($location[0]));
         $html .= $this->addContent('    <meta name="place:location:longitude" content="%s">', trim($location[1]));
+        $html .= $this->addContent('    <meta name="place:location:altitude" content="%s">', "1");
+        $html .= $this->addContent('    <meta name="place:location:accuracy" content="%s">', "100");
+        $html .= $this->addContent('    <meta property="business:contact_data:locality" content="%s">', $this->geoCity);
+        $html .= $this->addContent('    <meta property="business:contact_data:country_name" content="%s">', $this->geoCountry);
+        $html .= '    <meta name="referrer" content="no-referrer-when-downgrade">'."\n";
+        $html .= '    <meta name="format-detection" content="telephone=no">'."\n";
 
-        $html .= $this->addContent('    <link rel="canonical" href="%s">', $this->canonicalUrl);
+        if(empty($this->canonicalUrl)){
+            $this->canonicalUrl = $this->getCanonicalLink();
+        }
+        $html .= '    <link rel="canonical" href="' . $this->canonicalUrl . '">'. "\n";
+        $html .= $this->addContent('    <link rel="sitemap" href="%s">', $this->sitemapUrl);
+        $html .= $this->addContent('    <link rel="icon" type="image/png" href="%s">', $this->faviconUrl);
+        $html .= $this->addContent('    <meta name="theme-color" content="%s">', $this->themeColor);
+
+        $html .= '    <meta property="og:type" content="website">'."\n";
+        $html .= $this->addContent('    <meta property="og:site_name" content="%s">', $this->siteName);
+        $html .= $this->addContent('    <meta property="og:title" content="%s">', $this->title);
+        $html .= $this->addContent('    <meta property="og:description" content="%s">', $this->description);
+        $html .= $this->addContent('    <meta property="og:url" content="%s">', $this->canonicalUrl);
+        $html .= $this->addContent('    <meta property="og:image" content="%s">', $this->fbImageUrl);
+        if(!empty($this->fbImageUrl)){
+            $html .= '    <meta property="og:image:width" content="1200">'."\n";
+            $html .= '    <meta property="og:image:height" content="630">'."\n";
+        }
+
+        $html .= '    <meta name="twitter:card" content="summary_large_image">'."\n";
+        $html .= $this->addContent('    <meta name="twitter:title" content="%s">', $this->title);
+        $html .= $this->addContent('    <meta name="twitter:description" content="%s">', $this->description);
+        $html .= $this->addContent('    <meta name="twitter:image" content="%s">', $this->twitterImageUrl);
+        if(!empty($this->twitterImageUrl)){
+            $html .= '    <meta name="twitter:image:width" content="800">'."\n";
+            $html .= '    <meta name="twitter:image:height" content="400">'."\n";
+        }
+
+        $html .= '    <meta property="og:whatsapp" content="share">'."\n";
+        $html .= $this->addContent('    <meta property="og:image:whatsapp" content="%s">', $this->whatsappImageUrl);
 
         // Add additional meta tags
         foreach ($this->metaTags as $meta) {
@@ -236,11 +393,15 @@ class HeadGenerator implements HeadGeneratorInterface {
 
         // Add CSS links
         foreach ($this->styleSheetUrls as $url) {
+            $html .= '    <link rel="prefetch" href="' . $url . '">' . "\n";
             $html .= '    <link rel="stylesheet" href="' . $url . '">' . "\n";
         }
 
         // Add JS links
         foreach ($this->scriptUrls as $url) {
+            if(!empty($this->get_external_domain_url($url))){
+                $html .= '    <link rel="dns-prefetch" href="' . $this->get_external_domain_url($url) . '">' . "\n";
+            }
             $html .= '    <script src="' . $url . '"></script>' . "\n";
         }
 
