@@ -6,6 +6,7 @@ PHP class that generates an optimized &lt;head> tag for search engine optimizati
 [![Latest Stable Version](http://poser.pugx.org/webmonster-community/head-generator/v)](https://packagist.org/packages/webmonster-community/head-generator)
 [![Total Downloads](http://poser.pugx.org/webmonster-community/head-generator/downloads)](https://packagist.org/packages/webmonster-community/head-generator)
 [![License](http://poser.pugx.org/webmonster-community/head-generator/license)](https://packagist.org/packages/webmonster-community/head-generator)
+[![PHP Version Require](http://poser.pugx.org/webmonster-community/head-generator/require/php)](https://packagist.org/packages/webmonster-community/head-generator)
 
 ## Requirements
 
