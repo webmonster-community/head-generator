@@ -22,7 +22,11 @@
   },
   "autoload": {
     "psr-4": {
-      "webmonsterSEO\\": "src/",
+      "webmonsterSEO\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
       "tests\\": "tests/"
     }
   },
