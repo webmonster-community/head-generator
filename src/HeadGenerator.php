@@ -1,6 +1,8 @@
 <?php
 namespace webmonsterSEO;
 
+use InvalidArgumentException;
+
 class HeadGenerator implements HeadGeneratorInterface {
 
     protected string    $language = 'en';
@@ -135,6 +137,11 @@ class HeadGenerator implements HeadGeneratorInterface {
      */
     public function setGeoPosition(string $geoPosition): HeadGenerator
     {
+        // Check if $geoPosition is in the correct format of "latitude,longitude"
+        if (!preg_match('/^[-]?([0-8]?[0-9]|90)[.][0-9]{1,10},[-]?((1[0-7]|[0-9])?[0-9]|[1-9][0-9])[.][0-9]{1,10}$/', $geoPosition)) {
+            throw new InvalidArgumentException('Invalid format for geoPosition. Should be in the format "latitude,longitude"');
+        }
+
         $this->geoPosition = $geoPosition;
         return $this;
     }
@@ -333,7 +340,7 @@ class HeadGenerator implements HeadGeneratorInterface {
             $this->canonicalUrl = $this->getCanonicalLink();
         }
         $html .= '    <link rel="canonical" href="' . $this->canonicalUrl . '">'. "\n";
-        $html .= $this->addContent('    <link rel="sitemap" href="%s">', $this->sitemapUrl);
+        $html .= $this->addContent('    <link rel="sitemap" type="application/xml" href="%s">', $this->sitemapUrl);
         $html .= $this->addContent('    <link rel="icon" type="image/png" href="%s">', $this->faviconUrl);
         $html .= $this->addContent('    <meta name="theme-color" content="%s">', $this->themeColor);
 
